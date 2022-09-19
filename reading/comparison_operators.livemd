@@ -133,6 +133,10 @@ that would make the statement `true` if it replaced all of the blanks `__`.
 Utils.form(:comparison_operators)
 ```
 
+```elixir
+IO.puts("To make GIT happy :)")
+```
+
 ## Commit Your Progress
 
 Run the following in your command line from the project folder to track and save your progress in a Git commit.
