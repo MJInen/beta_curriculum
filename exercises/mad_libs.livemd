@@ -40,7 +40,10 @@ blank3 = "code"
 Enter your solution below.
 
 ```elixir
-
+val1 = "Beast"
+val2 = "coffe"
+val3 = "code"
+"A programmer is a " <> val1 <> " that turns " <> val2 <> " into " <> val3 <> "."
 ```
 
 ## String Interpolation Madlib
@@ -65,7 +68,9 @@ blank3 = "foobar"
 Enter your solution below.
 
 ```elixir
-
+val1 = "Concatenation"
+val2 = "Interpolation"
+"#{val1} and #{val2} combined makes combine."
 ```
 
 ## Commit Your Progress
