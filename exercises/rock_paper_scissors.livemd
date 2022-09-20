@@ -87,7 +87,14 @@ Given a `player_choice` of either `:rock`, `:paper`, or `:scissors` determining 
 Enter your solution below.
 
 ```elixir
+player_choice = :paper
 
+cond do
+  player_choice == :rock -> :paper
+  player_choice == :scissors -> :rock
+  player_choice == :paper -> :scissors
+  true -> nil
+end
 ```
 
 ## Create Two Player Rock Paper Scissors
@@ -152,7 +159,21 @@ Given `player1` and `player2` select either `:rock`, `:paper`, or `:scissors`, r
 Enter your solution below.
 
 ```elixir
+player1 = Enum.random([:rock, :paper, :scissors])
+player2 = Enum.random([:rock, :paper, :scissors])
 
+IO.puts("1: #{player1},   2: #{player2}")
+
+cond do
+  player1 == player2 -> "Draw"
+  player1 == :rock && player2 == :paper -> "Player2"
+  player1 == :scissors && player2 == :rock -> "Player2"
+  player1 == :paper && player2 == :scissors -> "Player2"
+  player2 == :rock && player1 == :paper -> "Player1"
+  player2 == :scissors && player1 == :rock -> "Player1"
+  player2 == :paper && player1 == :scissors -> "Player1"
+  true -> nil
+end
 ```
 
 ## Commit Your Progress
