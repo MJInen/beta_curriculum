@@ -80,6 +80,7 @@ That worked, but what about when we try to accept input from player 2?
 ```elixir
 defmodule RockPaperScissors do
   def play(player1_choice, player2_choice) do
+    # Bug here, Player1 should win
     (player1_choice === "Rock" && player2_choice === "Rock" && "Draw") ||
       (player1_choice === "Rock" && player2_choice === "Paper" && "Player2") ||
       (player1_choice === "Rock" && player2_choice === "Scissors" && "Player1") ||
@@ -108,7 +109,7 @@ It's "Paper" and "Rock". player1 should win, but instead player2 wins.
 </details>
 
 ```elixir
-
+RockPaperScissors.play("Paper", "Rock")
 ```
 
 ### Clear Control Flow
@@ -260,13 +261,33 @@ or `"Good afternoon!"`.
 Replace `8` with a time in the afternoon using 24 hour format. See that it now runs `"Good afternoon!"`
 
 ```elixir
-current_hour = 8
+# Oryginal
+# current_hour = 8
+
+# if current_hour < 12 do
+#   "Good morning!"
+# end
+
+# if current_hour >= 12 do
+#   "Good Afternoon!"
+# end
+
+# My ver. 1
+# current_hour = 8
+
+# if current_hour >= 12 do
+#   "Good Afternoon!"
+# end
+# if current_hour < 12 do
+#   "Good morning!"
+# end
+
+# My ver. 2
+current_hour = 21
 
 if current_hour < 12 do
   "Good morning!"
-end
-
-if current_hour >= 12 do
+else
   "Good Afternoon!"
 end
 ```
@@ -328,7 +349,14 @@ to `20` will be hot.
 Enter your answer in the Elixir cell below.
 
 ```elixir
+# Any number greater than or equal to 20 will be hot.
+temperature = 19
 
+if temperature >= 20 do
+  "hot"
+else
+  "cold"
+end
 ```
 
 ## Unless
@@ -355,7 +383,7 @@ end
 ```
 
 ```elixir
-is_raining = false
+is_raining = true
 
 unless is_raining do
   "Let's go to the beach!"
@@ -366,7 +394,7 @@ You can also use `else` with unless but it's not always the most clear to read a
 be an `if` instead.
 
 ```elixir
-condition = true
+condition = false
 
 unless condition do
 else
@@ -382,7 +410,11 @@ In the Elixir cell below
 * Create an `unless` statement. which returns `"awake"` unless `tired`.
 
 ```elixir
+tired = false
 
+unless tired do
+  "awake"
+end
 ```
 
 ## Case
@@ -490,10 +522,18 @@ still going to return the `"sunny"` case though.
 
 ```elixir
 case "sunny" do
-  "sunny" -> "wear a t-shirt"
-  "rainy" -> "wear a rain jacket"
-  "cold" -> "wear a sweater"
-  "snowy" -> "wear a thick coat"
+  "sunny" ->
+    "wear a t-shirt"
+
+  "rainy" ->
+    "wear a rain jacket"
+
+  "cold" ->
+    "wear a sweater"
+
+  "snowy" ->
+    "wear a thick coat"
+    # _ -> nil
 end
 ```
 
@@ -504,7 +544,7 @@ try changing the `weather` variable by binding it to `"rainy"` and re-evaluate t
 Elixir cell. Try that again with `"cold"`, and `"snowy"`.
 
 ```elixir
-weather = "sunny"
+weather = "snowy"
 
 case weather do
   "sunny" -> "wear a t-shirt"
@@ -524,7 +564,7 @@ if it matches any of the cases. It then executes the first case that matches.
 ````elixir
 frames = [
   "
-We create a case statement.
+ew create a case statement.
 ```elixir
 case \"snowy\" do
   \"sunny\" -> \"wear a t-shirt\"
@@ -824,7 +864,15 @@ The conditions for `grade` should be:
 * 1-54 is a D
 
 ```elixir
+grade = 64
 
+cond do
+  grade >= 85 && grade <= 100 -> "A"
+  grade >= 70 && grade <= 84 -> "B"
+  grade >= 55 && grade <= 59 -> "C"
+  grade >= 1 && grade <= 54 -> "D"
+  true -> "numbers between 60 and 69 is not covered by this test!"
+end
 ```
 
 ## Commit Your Progress
