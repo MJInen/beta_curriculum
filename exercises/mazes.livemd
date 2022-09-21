@@ -80,7 +80,8 @@ atom_maze = %{
   }
 }
 
-path = nil
+path = atom_maze[:south][:west][:south][:east][:south][:east][:south]
+# path
 ```
 
 ## The String Maze
@@ -114,7 +115,7 @@ string_maze = %{
   }
 }
 
-path = nil
+path = string_maze["south"]["east"]["south"]["west"]["south"]["west"]["south"]["east"]["south"]
 
 Utils.feedback(:string_maze, [string_maze, path])
 ```
@@ -132,11 +133,56 @@ at least a 5 * 5 in width and height.
 Replace `nil` with your answers below.
 
 ```elixir
-custom_maze = nil
+custom_maze = %{
+  south: %{
+    east: %{
+      south: %{
+        west: %{
+          south: %{
+            west: %{
+              south: %{
+                east: %{
+                  south: "Exit!"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
-path = nil
+path = custom_maze[:south][:east][:south][:west][:south][:west][:south][:east][:south]
 
-Utils.feedback(:custom_maze, [custom_maze, nil])
+Utils.feedback(:custom_maze, [custom_maze, path])
+```
+
+```elixir
+custom_maze_string = %{
+  "south" => %{
+    "east" => %{
+      "south" => %{
+        "west" => %{
+          "south" => %{
+            "west" => %{
+              "south" => %{
+                "east" => %{
+                  "south" => "Exit!"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+path =
+  custom_maze_string["south"]["east"]["south"]["west"]["south"]["west"]["south"]["east"]["south"]
+
+Utils.feedback(:custom_maze, [custom_maze_string, path])
 ```
 
 ## Treasure Map
@@ -178,7 +224,8 @@ treasure_map = %{
   }
 }
 
-path = nil
+path =
+  treasure_map["south ten paces"][10][:"east three paces"][[1, 2, 3]][{"turn", "right"}][:dig]
 
 Utils.feedback(:treasure_map, [treasure_map, path])
 ```
@@ -221,7 +268,12 @@ treasure_map = %{
   }
 }
 
-updated_map = %{}
+updated_map = %{
+  treasure_map
+  | "south ten paces" => %{
+      10 => %{:"east three paces" => %{[1, 2, 3] => %{{"turn", "right"} => %{:dig => "taken"}}}}
+    }
+}
 
 Utils.feedback(:update_treasure_map, [treasure_map, updated_map])
 ```
