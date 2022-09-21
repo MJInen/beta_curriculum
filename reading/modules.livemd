@@ -50,6 +50,8 @@ defmodule Greeter do
     "hello world"
   end
 end
+
+Greeter.hello()
 ```
 
 Let's break down the named function above.
@@ -83,6 +85,8 @@ defmodule Greeter do
     "hi #{name}"
   end
 end
+
+Greeter.hi("DOCKYARD")
 ```
 
 You call the named function in the module by passing it an argument.
@@ -97,7 +101,13 @@ In the Elixir cell below, create a `Math` module with a function `add` that adds
 together.
 
 ```elixir
+defmodule Math do
+  def add(a, b) do
+    a + b
+  end
+end
 
+Math.add(2, 3)
 ```
 
 ## Internal Module Functions
@@ -144,7 +154,13 @@ defmodule InspectorGadget do
   def gogo(gadget) do
     "Go go gadget #{gadget}!"
   end
+
+  def arms do
+    gogo("arms")
+  end
 end
+
+InspectorGadget.arms()
 ```
 
 ## Private Functions
@@ -264,7 +280,26 @@ MyModule.SubModule.my_function()
 In the Elixir cell below, create two submodules under as single namespace.
 
 ```elixir
+# defmodule MainModule.SubMod_1 do
+# end
 
+# defmodule MainModule.SubMod_2 do
+# end
+
+defmodule MainModule.SubMod_1 do
+  def hello() do
+    IO.puts("MainModule.SubMod_1")
+  end
+end
+
+defmodule MainModule.SubMod_2 do
+  def hello() do
+    IO.puts("MainModule.SubMod_2")
+  end
+end
+
+MainModule.SubMod_1.hello()
+MainModule.SubMod_2.hello()
 ```
 
 ## Module Attributes
@@ -379,7 +414,7 @@ defmodule Hero do
   end
 end
 
-Hero.victory()
+Hero.catchphrase() <> " --- " <> Hero.victory()
 ```
 
 If the module attribute value changes, you only need to change the module attribute.
@@ -435,7 +470,18 @@ Create a `Math` module with `add/2` and `add/3` functions. Each should add all o
 together.
 
 ```elixir
+defmodule Math do
+  def add(a, b) do
+    a + b
+  end
 
+  def add(a, b, c) do
+    a + b + c
+  end
+end
+
+IO.puts(Math.add(1, 2))
+IO.puts(Math.add(1, 2, 3))
 ```
 
 ## Default Arguments
@@ -495,7 +541,14 @@ Greeter.greet("HI")
 In the Elixir cell below, define a module with a function that uses a default argument.
 
 ```elixir
+defmodule DefaultParams do
+  def show(name, age \\ 0) do
+    IO.puts("My name is #{name} and I'm #{age}.")
+  end
+end
 
+DefaultParams.show("xxx")
+DefaultParams.show("Marek", 58)
 ```
 
 ## Commit Your Progress
