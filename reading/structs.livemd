@@ -187,7 +187,42 @@ Person.greet(person)
   `"#{greeting} I am #{hero.name}"`
 
 ```elixir
+# defmodule Hero do
+#     defstruct [:name, :catchphrase, :secret_identity]
 
+#     def new(name, catchphrase, secret_identity) do
+#         {:ok, %Hero{name: name, catchphrase: catchphrase, secret_identity: secret_identity}}
+#     end
+#     def reveal(hero) do
+#         "I am secretly #{hero.secret_identity}"
+#     end
+
+#     def introduce(hero, greeting) do
+#         #{greeting} I am #{hero.name}"
+#     end
+# end
+
+defmodule Hero do
+  defstruct [:name, :catchphrase, :secret_identity]
+
+  def new(name, catchphrase, secret_identity) do
+    {:ok, %Hero{name: name, catchphrase: catchphrase, secret_identity: secret_identity}}
+  end
+
+  def reveal(hero) do
+    "I am secretly #{hero.secret_identity}"
+  end
+
+  def introduce(hero, greeting) do
+    "#{greeting} I am #{hero.name}"
+  end
+end
+
+# module
+
+{:ok, hero} = Hero.new("Indiana Jones", "Treasure finder!", "I-J")
+IO.puts(Hero.reveal(hero))
+IO.puts(Hero.introduce(hero, "Hello,"))
 ```
 
 ### Your Turn
@@ -205,19 +240,24 @@ classDiagram
 ```
 
 ```elixir
-
+{:ok, spider_man} =
+  Hero.new(
+    "Spider Man",
+    "Friendly neighborhood Spiderman!",
+    "Peter Parker"
+  )
 ```
 
 Use the `Hero.introduce/2` function on `spider_man`.
 
 ```elixir
-
+Hero.introduce(spider_man, "Hello,")
 ```
 
 Use the `Hero.reveal/1` function on `spider_man`.
 
 ```elixir
-
+Hero.reveal(spider_man)
 ```
 
 ### Updating A Struct
